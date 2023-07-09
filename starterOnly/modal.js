@@ -24,11 +24,9 @@ function launchModal() {
 }
 
 /// close modal form
-function closeModal(event) {
-  event.preventDefault();
+function closeModal() {
   modalbg.style.display = "none";
 }
-
 
 const form = document.querySelector("form[name='reserve']");
 form.addEventListener("submit", function (event) {
@@ -37,9 +35,11 @@ form.addEventListener("submit", function (event) {
   const errorFields = document.querySelectorAll(".error-message");
   errorFields.forEach((field) => (field.textContent = ""));
 
-  const isValid = validate();
+  validate();
 });
 
+
+// Validation form
 function validate() {
   const formData = document.querySelectorAll(".formData");
 
@@ -111,6 +111,8 @@ function validate() {
   }
 }
 
+
+// Error Message
 function displayErrorMessage(fieldName, errorMessage) {
   const errorField = document.getElementById(`${fieldName}-error`);
   const inputField = document.getElementById(fieldName);
@@ -119,11 +121,13 @@ function displayErrorMessage(fieldName, errorMessage) {
   inputField.classList.add('error-border');
 }
 
+// Email validation
 function isValidEmail(email) {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return emailRegex.test(email);
 }
 
+// Success Message
 function displaySuccessMessage() {
   const formContainer = document.querySelector(".form-container");
   const successMessage = document.getElementById("success-message");
